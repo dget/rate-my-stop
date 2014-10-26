@@ -41,21 +41,29 @@
 
 								var a = json[i];
 								var title = a.stop_id;
+								var feedbackText = '<div><p><strong> Bus Stop Id = '+a.stop_id+'</strong></p>';
+								for (var j=0; j<a.feedback.length; j++){
+										var dateTime = new Date(a.feedback[j].datetime);
+										feedbackText += '<div><span> Comment - '+a.feedback[j].comment+' </span></br>';
+										feedbackText += '<span> Date&time - 'a.feedback[j].datetime+' </span></br>';
+										feedbackText += '<span> Sentiment - '+a.feedback[j].sentiment+' </span></br></div></br></br>';
+								}
+								feedbackText += '</div>';
 								var marker = L.marker(new L.LatLng(a.lat, a.long), {
 										icon: L.mapbox.marker.icon({'marker-symbol': 'bus', 'marker-size':'large', 'marker-color': '0044FF'}),
 										title: title,
 										clickable: true
 								});
-								marker.bindPopup(title);
+								marker.bindPopup(feedbackText);
 
 								marker.on('click',function(e) {
 								// Force the popup closed.
-									this.closePopup();
+	//								this.closePopup();
 
 									//var feature = e.feature;
 
 									var content = '<div><strong>' + this.options.title + '</strong></div>';
-
+									var listDiv = '';
 							info.innerHTML = content;
 
 				});
