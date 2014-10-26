@@ -6,11 +6,13 @@ from pytz import timezone, utc
 import twilio.twiml
 import json
 import requests
+from flask_cors import CORS
  
 import config
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
+cors = CORS(app)
 
 app_config = os.environ.get('APP_SETTINGS', 'config.DevelopmentConfig')
 app.config.from_object(app_config)
