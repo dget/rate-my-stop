@@ -16,6 +16,7 @@
 <body>
 <div id='map'></div>
 <div id='info' class='info'></div>
+<div id='list' class='info'></div>
 
 <script>
 			L.mapbox.accessToken = 'pk.eyJ1IjoicmJob3NsZSIsImEiOiJYYVhjOE9NIn0.RqUSYxLLakn-Wd7a_LjEMA';
@@ -29,7 +30,6 @@
 
 
  $.getJSON("http://rate-my-stop.herokuapp.com/", function(data) {
-	debugger;
     json = data;
 })
 .done(function(data) {
@@ -38,7 +38,7 @@
 				var markers = new L.MarkerClusterGroup();
 
 						for (var i = 0; i < json.length; i++) {
-							debugger;
+
 								var a = json[i];
 								var title = a.stop_id;
 								var marker = L.marker(new L.LatLng(a.lat, a.long), {
@@ -59,7 +59,7 @@
 							info.innerHTML = content;
 
 				});
-				debugger;
+
 				markers.addLayer(marker);
 				}
 
@@ -94,11 +94,6 @@ function jsonToGeojson(json){
 }
 
 //jsonToGeojson(json);
-
-
-
-
-debugger;
 
 
 //Add geojson to feature layer
