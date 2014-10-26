@@ -16,7 +16,59 @@
 <body>
 <div id='map'></div>
 <div id='info' class='info'></div>
+<div id='list' style="width: 30%; position: absolute; left: 0;">
 
+<div>
+	<h3>Rate My Stop</h3>
+</div>
+<div id="content-placeholder" style="border-color: grey; border-width: 5px; border-style: solid; box-shadow: 10px 10px 5px #888888; padding: 10px;"></div>
+<script id="docs-template" type="text/x-handlebars-template">
+
+{{#data}}
+<div style="background-color: black; color: white; border-radius: 10px; margin-bottom: 10px; padding: 10px; box-shadow: 10px 10px 5px #888888;" class="list-elem">
+	<details>		
+        <summary style="padding: 10px;">
+			<h1>Bus Stop {{stop_id}}<h1>
+		</summary>
+		{{#feedback}}
+		<div class="comment-box">
+			<p>{{comment}}</p>
+			<button class="feedback-btn">Reply</button>
+		</div>
+		{{/feedback}}
+
+
+	</details>
+</div>
+{{/data}}
+        
+</script>
+
+<script type="text/javascript">
+// This code depends on jQuery Core and Handlebars.js 
+
+//var api_key = 'CODE_SAMPLES_KEY_9d3608187'; // Get your API key at developer.betterdoctor.com
+//var resource_url = 'https://api.betterdoctor.com/2014-09-12/doctors?location=37.773,-122.413,100&skip=2&limit=10&user_key=' + api_key;
+
+var resource_url= "/sample.jsp";
+
+/** unify the data to the format we want */
+var unifyData = function(data) {
+	var modifiedData = {
+    	data: data
+    }
+	return modifiedData;
+}
+
+$.get(resource_url, function (data) {
+    // data: { meta: {<metadata>}, data: {<array[Doctor]>} }
+    var template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
+    var unifiedData = unifyData(data);
+    document.getElementById('content-placeholder').innerHTML = template(unifiedData);
+});
+</script>
+
+</div>
 <script>
 			L.mapbox.accessToken = 'pk.eyJ1IjoicmJob3NsZSIsImEiOiJYYVhjOE9NIn0.RqUSYxLLakn-Wd7a_LjEMA';
 			var info = document.getElementById('info');
@@ -28,7 +80,7 @@
 
 
 
- $.getJSON("http://rate-my-stop.herokuapp.com/", function(data) {
+ $.getJSON("/sample.jsp", function(data) {
 	debugger;
     json = data;
 })
