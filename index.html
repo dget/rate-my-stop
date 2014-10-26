@@ -97,9 +97,9 @@ $.getJSON("http://rate-my-stop.herokuapp.com/", function(data) {
 								var title = a.stop_id;
 								var feedbackText = '<div><p><strong> Bus Stop Id = '+a.stop_id+'</strong></p>';
 								for (var j=0; j<a.feedback.length; j++){
-										var dateTime = new Date(a.feedback[j].datetime);
+										var dateTime = new Date(a.feedback[j].datetime / 1000);
 										feedbackText += '<div><span> Comment - '+a.feedback[j].comment+' </span></br>';
-										feedbackText += '<span> Date&time - '+a.feedback[j].datetime+' </span></br>';
+										feedbackText += '<span> Date&time - '+dateTime+' </span></br>';
 										feedbackText += '<span> Sentiment - '+a.feedback[j].sentiment+' </span></br></div></br></br>';
 								}
 								feedbackText += '</div>';
