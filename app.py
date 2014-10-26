@@ -98,7 +98,7 @@ def query_all_data():
         'feedback': [{
             'datetime': int(unix_time(feedback.created_at)),
             'comment': feedback.comment,
-            'sentiment': 'pro' # replace me with working code
+            'sentiment': feedback.sentiment
         } for feedback in all_feedbacks if feedback.stop_id == stop.stop_id]
     } for stop in stops]
 
