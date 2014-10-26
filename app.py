@@ -43,7 +43,7 @@ def sentiment_analysis(feedback):
         #print feedback_sentiment
         return feedback_sentiment
 
-    sentiment_value(json_response)
+    return sentiment_value(json_response)
 
 @app.route("/twilio_sms", methods=['GET', 'POST'])
 def incoming_sms():
