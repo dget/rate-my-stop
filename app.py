@@ -5,6 +5,7 @@ import datetime
 from pytz import timezone, utc
 import twilio.twiml
 import json
+import requests
  
 import config
 
